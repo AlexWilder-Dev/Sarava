@@ -1,0 +1,632 @@
+/* Colours sampled from the shopfront, the room and the food photos.
+   Café mode (day) is the white-washed room with the teal fascia;
+   bar mode (from happy hour) is the black window glass with gold lettering. */
+:root {
+  --teal: #2e9c95;
+  --teal-deep: #146b66;
+  --teal-ink: #0f5551;
+  --turquoise: #04a9be;
+  --red: #e5544b;
+  --red-ink: #b5372f;
+  --chair: #8e1b22;
+  --gold: #d9b865;
+  --gold-soft: #e8d59c;
+  --glass: #1c1a17;
+  --glass-2: #26231f;
+  --wash: #f3eee6;
+  --wash-2: #e9e2d6;
+  --wood: #6a4b35;
+  --buckwheat: #8b5a3c;
+  --crepe: #e9b97a;
+  --sky: #8fb3d9;
+
+  --bg: var(--wash);
+  --bg-2: var(--wash-2);
+  --text: var(--glass);
+  --muted: #5b544b;
+  --line: rgba(28, 26, 23, 0.14);
+  --accent: var(--teal-deep);
+  --price: var(--teal-ink);
+
+  --sans: 'Jost', 'Futura', 'Avenir Next', system-ui, sans-serif;
+  --sign: 'Barlow Condensed', 'Oswald', 'Arial Narrow', sans-serif;
+
+  --gutter: 16px;
+  --max: 1160px;
+  --radius: 2px;
+  --bar-h: 64px;
+
+  color-scheme: light;
+}
+
+:root[data-mode='bar'] {
+  --bg: var(--glass);
+  --bg-2: var(--glass-2);
+  --text: var(--wash);
+  --muted: #b9b0a2;
+  --line: rgba(243, 238, 230, 0.16);
+  --accent: var(--gold);
+  --price: var(--gold);
+  color-scheme: dark;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-padding-top: 132px;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.55;
+  transition: background-color 0.9s ease, color 0.9s ease;
+  overflow-x: hidden;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  color: inherit;
+}
+
+:focus-visible {
+  outline: 3px solid var(--red);
+  outline-offset: 3px;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+.wrap {
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* ---------- Type ---------- */
+
+h1,
+h2,
+h3 {
+  font-weight: 500;
+  line-height: 1.08;
+  margin: 0;
+  letter-spacing: -0.01em;
+}
+
+h1 {
+  font-size: clamp(2.2rem, 8.5vw, 4.4rem);
+}
+
+h2 {
+  font-size: clamp(1.8rem, 6vw, 3rem);
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+.caps {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 500;
+  font-size: 0.78rem;
+}
+
+/* Signwriting: the gold condensed lettering with a hard teal shadow from
+   the "ALL COCKTAILS – £6" window board. */
+.sign {
+  font-family: var(--sign);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  color: var(--gold);
+  text-shadow: 0.055em 0.055em 0 var(--teal-deep);
+  line-height: 1;
+}
+
+.sign--plain {
+  text-shadow: none;
+}
+
+/* ---------- Buttons ---------- */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5em;
+  min-height: 48px;
+  padding: 0.7em 1.2em;
+  border: 2px solid currentColor;
+  border-radius: var(--radius);
+  background: transparent;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s, transform 0.15s;
+}
+
+.btn:active {
+  transform: translateY(1px);
+}
+
+.btn--red {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+}
+
+.btn--red:hover {
+  background: var(--red-ink);
+  border-color: var(--red-ink);
+}
+
+.btn--gold {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--glass);
+}
+
+.btn--ghost:hover {
+  background: var(--text);
+  color: var(--bg);
+}
+
+.btn svg {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+}
+
+.link-arrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 2px solid var(--red);
+  padding-bottom: 2px;
+}
+
+.link-arrow:hover {
+  color: var(--red-ink);
+}
+
+:root[data-mode='bar'] .link-arrow:hover {
+  color: var(--gold);
+}
+
+/* ---------- Fascia (header) ---------- */
+
+.fascia {
+  position: sticky;
+  top: 0;
+  z-index: 40;
+  background: var(--teal);
+  color: var(--red);
+  border-top: 3px solid #2a5fa0;
+  box-shadow:
+    inset 0 5px 0 rgba(255, 255, 255, 0.08),
+    inset 0 -6px 0 rgba(0, 0, 0, 0.12),
+    0 1px 0 rgba(0, 0, 0, 0.2);
+}
+
+.fascia__inner {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  height: 60px;
+}
+
+.fascia__home {
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  color: var(--red);
+}
+
+.fascia__word {
+  height: 19px;
+  width: auto;
+}
+
+.sun-toggle {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-left: -4px;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--red);
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.sun-toggle svg {
+  width: 34px;
+  height: 34px;
+}
+
+.fascia__nav {
+  margin-left: auto;
+  display: flex;
+  gap: 2px;
+}
+
+.fascia__nav a {
+  display: grid;
+  place-items: center;
+  min-height: 44px;
+  padding: 0 9px;
+  color: #fff;
+  text-decoration: none;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.74rem;
+  font-weight: 500;
+  border-bottom: 3px solid transparent;
+}
+
+.fascia__nav a[aria-current='page'] {
+  border-bottom-color: var(--red);
+}
+
+.fascia__nav a:hover {
+  color: var(--glass);
+}
+
+.fascia__nav .only-wide {
+  display: none;
+}
+
+@media (min-width: 720px) {
+  .fascia__inner {
+    height: 72px;
+  }
+  .fascia__word {
+    height: 24px;
+  }
+  .sun-toggle svg {
+    width: 40px;
+    height: 40px;
+  }
+  .fascia__nav a {
+    padding: 0 14px;
+    font-size: 0.82rem;
+  }
+  .fascia__nav .only-wide {
+    display: grid;
+  }
+}
+
+/* ---------- Window glass panels ---------- */
+
+.glass {
+  position: relative;
+  background:
+    linear-gradient(115deg, rgba(255, 255, 255, 0.07) 0 18%, transparent 18% 60%, rgba(255, 255, 255, 0.04) 60% 64%, transparent 64%),
+    var(--glass);
+  color: var(--wash);
+  border: 10px solid var(--teal);
+  box-shadow:
+    inset 0 0 0 1px rgba(0, 0, 0, 0.5),
+    inset 0 0 40px rgba(0, 0, 0, 0.6);
+}
+
+:root[data-mode='bar'] .glass {
+  border-color: var(--teal-deep);
+}
+
+/* ---------- Bottom action bar (phones) ---------- */
+
+.action-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 45;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr 1fr;
+  background: var(--glass);
+  border-top: 4px solid var(--teal);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+.action-bar a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 56px;
+  color: var(--gold);
+  text-decoration: none;
+  font-family: var(--sign);
+  font-weight: 600;
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-left: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.action-bar a:first-child {
+  background: var(--red);
+  color: #fff;
+  border-left: 0;
+}
+
+.action-bar svg {
+  width: 20px;
+  height: 20px;
+}
+
+body {
+  padding-bottom: calc(60px + env(safe-area-inset-bottom));
+}
+
+@media (min-width: 900px) {
+  .action-bar {
+    display: none;
+  }
+  body {
+    padding-bottom: 0;
+  }
+}
+
+/* ---------- Frames (the salon wall) ---------- */
+
+.frame {
+  position: relative;
+  margin: 0;
+  padding: var(--fw, 12px);
+  background: var(--fb, #3b2a1d);
+  box-shadow:
+    inset 0 0 0 2px rgba(0, 0, 0, 0.35),
+    inset 0 0 0 4px rgba(255, 255, 255, 0.08),
+    0 18px 30px -18px rgba(0, 0, 0, 0.55),
+    0 2px 4px rgba(0, 0, 0, 0.2);
+  transform: rotate(var(--tilt, 0deg));
+}
+
+.frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.3);
+}
+
+.frame--mat .frame__mat {
+  background: #f6f1e7;
+  padding: var(--mat, 14px);
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.12);
+}
+
+.frame--gilt {
+  --fb: linear-gradient(135deg, #a7802f, #f0d58a 22%, #9b7429 45%, #e7c871 70%, #8c6721);
+}
+
+.frame--wood {
+  --fb: linear-gradient(160deg, #4a3222, #6e4c33 40%, #3d2919);
+}
+
+.frame--red {
+  --fb: linear-gradient(150deg, #b0262e, #e04a4f 35%, #8e1b22);
+}
+
+.frame--black {
+  --fb: #141210;
+}
+
+.frame figcaption {
+  margin: 10px -4px -4px;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: #e9e2d6;
+  text-align: center;
+}
+
+/* ---------- Sections ---------- */
+
+.section {
+  padding: 64px 0;
+}
+
+.section--tight {
+  padding: 40px 0;
+}
+
+.kicker {
+  display: inline-block;
+  margin-bottom: 14px;
+  color: var(--accent);
+}
+
+.lede {
+  font-size: 1.15rem;
+  max-width: 36em;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.quote {
+  margin: 28px 0 0;
+  padding: 0 0 0 18px;
+  border-left: 4px solid var(--red);
+  max-width: 34em;
+}
+
+.quote p {
+  font-size: 1.12rem;
+  margin: 0 0 6px;
+}
+
+.quote cite {
+  font-style: normal;
+  font-size: 0.82rem;
+  color: var(--muted);
+}
+
+.quote cite a {
+  text-decoration-color: var(--red);
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  background: var(--glass);
+  color: var(--wash);
+  border-top: 10px solid var(--teal);
+  padding: 48px 0 32px;
+  font-size: 0.95rem;
+}
+
+.footer__grid {
+  display: grid;
+  gap: 32px;
+}
+
+.footer__logo {
+  color: var(--gold);
+  display: grid;
+  justify-items: start;
+  gap: 10px;
+}
+
+.footer__logo svg:first-child {
+  width: 64px;
+}
+
+.footer__logo svg:nth-child(2) {
+  width: 150px;
+}
+
+.footer__since {
+  font-family: var(--sans);
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  font-size: 0.8rem;
+}
+
+.footer h2 {
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  margin-bottom: 10px;
+}
+
+.footer ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 6px;
+}
+
+.footer a {
+  text-decoration-color: rgba(217, 184, 101, 0.6);
+  text-underline-offset: 3px;
+}
+
+.footer__base {
+  margin-top: 40px;
+  padding-top: 18px;
+  border-top: 1px solid rgba(243, 238, 230, 0.14);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  color: #b9b0a2;
+}
+
+@media (min-width: 760px) {
+  .footer__grid {
+    grid-template-columns: 1.1fr 1fr 1fr 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
+}
+
+.link-arrow svg {
+  width: 1.1em;
+  height: 1.1em;
+  flex: none;
+}
+
+.section h2 {
+  margin-bottom: 18px;
+}
+
+.fascia__nav a {
+  white-space: nowrap;
+}
+
+.fascia__home,
+.sun-toggle {
+  transition: opacity 0.35s ease, transform 0.35s ease;
+}
+
+.fascia--bare {
+  box-shadow: inset 0 5px 0 rgba(255, 255, 255, 0.08);
+}
+
+.fascia--bare .fascia__home,
+.fascia--bare .sun-toggle {
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+}
+
+@media (max-width: 380px) {
+  .fascia__nav a {
+    padding: 0 7px;
+    letter-spacing: 0.08em;
+  }
+}
