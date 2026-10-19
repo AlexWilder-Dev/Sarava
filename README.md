@@ -2,7 +2,7 @@
 
 A speculative website for **Sarava Creperie Bar & Cafe**, Unit 41–42, Second Avenue, Brixton Village, London SW9 8PS. Made as a pitch for the owners.
 
-Live demo: https://alexwilder-dev.github.io/sarava/
+Live demo: https://alexwilder-dev.github.io/Sarava/
 
 ## What's in it
 
@@ -29,7 +29,7 @@ npm run images    # one-off: resize research/photos into public/photos
 npm run og        # one-off: build public/og.jpg and the favicons with sharp
 ```
 
-Stack: Vite, React, TypeScript, Framer Motion, React Router (HashRouter). Deployed to GitHub Pages by `.github/workflows/deploy.yml` with base path `/sarava/`.
+Stack: Vite, React, TypeScript, Framer Motion, React Router (HashRouter). Deployed to GitHub Pages by `.github/workflows/deploy.yml` under `/Sarava/`; assets use relative paths (`base: './'`).
 
 ## Credits
 
